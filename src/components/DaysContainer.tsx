@@ -60,7 +60,6 @@ export default function DaysContainer() {
 
 const styles = StyleSheet.create({
   daysContainer: {
-    marginTop: 50,
     marginStart: 20,
   },
   headerContainer: {

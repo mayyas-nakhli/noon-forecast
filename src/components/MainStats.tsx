@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
   },
   mainText: {
     color: '#efefef',
-    fontSize: 70,
+    fontSize: 60,
   },
   weatherImage: {
-    width: 200,
+    width: '50%',
     height: 200,
   },
   secondaryStats: {

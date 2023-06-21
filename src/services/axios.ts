@@ -1,8 +1,11 @@
+//@ts-ignore
+import {WEATHER_API_KEY} from '@env'
 import axios from 'axios';
 
+console.log(WEATHER_API_KEY)
 export const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
-    key: "0f33b7e8c2da4cbcb9491919232006",
+    key: WEATHER_API_KEY,
   },
 });

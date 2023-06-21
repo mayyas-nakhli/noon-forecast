@@ -1,20 +1,15 @@
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './src/services';
+import Navigation from './src/Navigation';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Here is the birth of noon forecast</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <StatusBar style="light" />
+     <Navigation /> 
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

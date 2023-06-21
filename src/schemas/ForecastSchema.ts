@@ -25,7 +25,6 @@ export const daySchema = z.object({
   maxtemp_c: z.number(),
   mintemp_c: z.number(),
   avgtemp_c: z.number(),
-  maxwind_kph: z.number(),
   avghumidity: z.number(),
   daily_chance_of_rain: z.number(),
   condition: z.object({

@@ -38,11 +38,6 @@ export default function HomeScreenSkeleton({ width }: { width: number }) {
           ></Skeleton>
         ))}
       </ScrollView>
-      <Skeleton
-        width={width - width / 2}
-        height={50}
-        style={{ borderRadius: 30, marginTop: 20, marginHorizontal: width / 4 }}
-      ></Skeleton>
     </>
   );
 }

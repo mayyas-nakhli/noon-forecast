@@ -99,5 +99,6 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     marginTop: 30,
+    marginBottom: 70,
   },
 });

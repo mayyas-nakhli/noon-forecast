@@ -34,9 +34,9 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
                   ? {}
                   : { borderBottomWidth: 1, borderBottomColor: '#e0e0e0' };
               return (
-                <TouchableOpacity style={[styles.location, borderStyle]}>
+                <TouchableOpacity key={item} style={[styles.location, borderStyle]}>
                   <MapPinIcon size={24} color={"#efefef"}/>
-                  <Text key={item}>
+                  <Text >
                     <Text style={{ color: '#efefef', fontSize: 18, marginEnd: 10 }}>
                       London - 
                     </Text>

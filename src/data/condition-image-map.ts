@@ -12,6 +12,8 @@ const thunder_snow_night = require('../../assets/weather-icons/thunderstorms-nig
 const thunder_snow_day= require('../../assets/weather-icons/thunderstorms-day-snow.png');
 const thunder_night = require('../../assets/weather-icons/thunderstorms-night.png')
 const thunder_day = require('../../assets/weather-icons/thunderstorms-day.png');
+const overcast_night = require('../../assets/weather-icons/overcast-night.png');
+const overcast_day= require('../../assets/weather-icons/overcast-day.png');
 
 export const CONDITION_IMAGE: {
   [key: string]: any;
@@ -41,6 +43,7 @@ export const CONDITION_IMAGE: {
     'Moderate or heavy snow with thunder': thunder_snow_night,
     "Thundery outbreaks possible": thunder_night,
     "Blowing snow": snow,
+    "Overcast": overcast_night,
   },
   {
     Sunny: clear_day,
@@ -67,5 +70,6 @@ export const CONDITION_IMAGE: {
     'Moderate or heavy snow with thunder': thunder_snow_day,
     "Thundery outbreaks possible": thunder_day,
     "Blowing snow": snow,
+    "Overcast": overcast_day,
   },
 ];

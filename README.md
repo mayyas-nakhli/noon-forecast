@@ -65,6 +65,18 @@ The main dependencies used in this project are:
 
 Please refer to the `package.json` file for a complete list of dependencies and their versions.
 
+## Upcoming Features
+
+In addition to the current features, the following enhancements are planned for future updates:
+
+1. Make the app more stable by implementing error handling and optimizing performance.
+2. Add different themes to the app, allowing users to choose between light and dark themes. Additionally, an automatic theme option can be included, which changes the theme based on the time of day.
+3. Implement a feature to save favorite locations, allowing users to easily access weather information for their preferred places.
+4. Implement a feature to ask the user for location permission and utilize the location data to provide weather information specific to the user's current location.
+
+These upcoming features aim to improve the user experience and provide more customization options within the app.
+
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per your needs.

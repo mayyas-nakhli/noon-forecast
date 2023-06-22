@@ -1,41 +1,73 @@
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { Current } from '../schemas';
+import { Current, ForecastResponse } from '../schemas';
 import { CONDITION_IMAGE } from '../data/condition-image-map';
 
 export default function MainStats({
-  current,
+  forecast,
   sunrise,
+  dayIndex,
 }: {
-  current: Current;
+  forecast: ForecastResponse;
   sunrise: string;
+  dayIndex: number;
 }) {
   const secondaryStats = [
     {
       imgSrc: require('../../assets/stats-icons/wind.png'),
       label: 'Wind',
-      value: `${current.wind_kph} KM/H`,
+      value: `${
+        dayIndex === 0
+          ? forecast.current.wind_kph
+          : forecast.forecast.forecastday[dayIndex].day.maxwind_kph
+      } KM/H`,
     },
     {
       imgSrc: require('../../assets/stats-icons/humidity.png'),
       label: 'Humidity',
-      value: `${current.humidity}%`,
+      value: `${
+        dayIndex === 0
+          ? forecast.current.humidity
+          : forecast.forecast.forecastday[dayIndex].day.avghumidity
+      }%`,
     },
     {
       imgSrc: require('../../assets/stats-icons/sunrise.png'),
       label: 'Sunrise',
-      value: `${sunrise}`,
+      value: `${
+        dayIndex === 0
+          ? sunrise
+          : forecast.forecast.forecastday[dayIndex].astro.sunrise
+      }`,
     },
   ];
+
   return (
     <View style={styles.mainStatsContainer}>
       <View style={styles.mainContent}>
         <Image
-          source={CONDITION_IMAGE[current.is_day][current.condition.text]}
+          source={
+            dayIndex === 0
+              ? CONDITION_IMAGE[forecast.current.is_day][
+                  forecast.current.condition.text
+                ]
+              : CONDITION_IMAGE[1][
+                  forecast.forecast.forecastday[dayIndex].day.condition.text
+                ]
+          }
           style={styles.weatherImage}
         />
         <View style={styles.weatherContainer}>
-          <Text style={styles.mainText}>{current.temp_c}&#176;</Text>
-          <Text style={styles.subtitle}>{current.condition.text}</Text>
+          <Text style={styles.mainText}>
+            {dayIndex === 0
+              ? Math.round(forecast.current.temp_c)
+              : Math.round(forecast.forecast.forecastday[dayIndex].day.avgtemp_c)}
+            &#176;
+          </Text>
+          <Text style={styles.subtitle}>
+            {dayIndex === 0
+              ? forecast.current.condition.text
+              : forecast.forecast.forecastday[dayIndex].day.condition.text}
+          </Text>
         </View>
       </View>
       <View style={styles.secondaryStats}>
@@ -73,11 +105,11 @@ const styles = StyleSheet.create({
   },
   mainText: {
     color: '#efefef',
-    fontSize: 60,
+    fontSize: 50,
   },
   weatherImage: {
-    width: '50%',
-    height: 200,
+    width: 200,
+    maxHeight: 200,
   },
   secondaryStats: {
     flexDirection: 'row',
@@ -89,11 +121,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
 
+    width: '30%',
+    minHeight: 100,
+
     marginBottom: 20,
     padding: 10,
 
     borderRadius: 10,
-    aspectRatio: '1/1',
   },
   statImage: {
     width: 20,
@@ -104,7 +138,7 @@ const styles = StyleSheet.create({
   },
   statValue: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 14,
   },
   subtitle: {
     color: '#e0e0e0',

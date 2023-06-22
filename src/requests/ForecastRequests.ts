@@ -8,7 +8,7 @@ import { QueryObserverOptions } from '@tanstack/react-query';
 
 const getForecast = (query: string): Promise<ForecastResponse> =>
   apiClient
-    .get<ForecastResponse>(`${backendURL}${apiEndpoints.forecast}?q=${query}&days=7`)
+    .get<ForecastResponse>(`${backendURL}${apiEndpoints.forecast}?q=${query}&days=8`)
     .then((res) => handleApiResponse(forecastResponseSchema, res)) 
     .catch((error: AxiosError) => {
       handleApiError(error);

@@ -10,7 +10,7 @@ export function get24Hours(
   if (forecast === undefined) {
     return [];
   }
-  if ((index = 0)) {
+  if ((index === 0)) {
     const today = dayjs();
     let hours24 = forecast[0].hour.filter((item) =>
       dayjs(item.time).isAfter(today)

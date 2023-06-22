@@ -19,13 +19,19 @@ function getDateList(): string[] {
 
   return dateList;
 }
-export default function DaysContainer() {
+export default function DaysContainer({
+  setDayIndex,
+}: {
+  setDayIndex: Function;
+}) {
   const [days] = useState(getDateList());
   const [selectedDay, setSelectedDay] = useState(days[0]);
   return (
     <View style={styles.daysContainer}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>{selectedDay === days[0] ? 'Today' : selectedDay}</Text>
+        <Text style={styles.headerText}>
+          {selectedDay === days[0] ? 'Today' : selectedDay}
+        </Text>
         <View style={styles.moreDaysContainer}>
           <Text style={styles.moreDaysText}>7 days</Text>
           <ChevronRightIcon size={16} color="#e0e0e0" />
@@ -40,6 +46,7 @@ export default function DaysContainer() {
           <TouchableOpacity
             onPress={() => {
               setSelectedDay(day);
+              setDayIndex(index);
             }}
             key={day}
           >
@@ -78,6 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
+
     opacity: 0.6,
   },
   moreDaysText: {
@@ -86,6 +94,7 @@ const styles = StyleSheet.create({
   scrollStyle: {
     display: 'flex',
     flexDirection: 'row',
+    marginTop: 5,
   },
   dayPill: {
     marginEnd: 10,

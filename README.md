@@ -4,11 +4,11 @@ This repository contains a simple weather app built using React Native. The app 
 
 ## Challenge Description
 
-The challenge was to build a weather app using a free weather API. The API used for this project is [Open-Meteo](https://open-meteo.com). The candidate had the freedom to choose the platform (iOS or Android) based on their development workstation's operating system (Windows/Linux or macOS). The UI and scope of the project were left for the candidate to decide.
+The challenge was to build a weather app using a free weather API. The API used for this project is [WeatherAPI](https://www.weatherapi.com/my/). The candidate had the freedom to choose the platform (iOS or Android) based on their development workstation's operating system (Windows/Linux or macOS). The UI and scope of the project were left for the candidate to decide.
 
 ## Features
 
-- Fetches weather data from the Open-Meteo API.
+- Fetches weather data from the Weather API.
 - Displays current weather information such as temperature, weather condition, humidity, wind speed, etc.
 - Supports viewing weather data for different locations.
 - Provides a user-friendly interface to navigate and interact with the app.
@@ -49,7 +49,7 @@ The project structure is as follows:
   - `/data`: Contains constants.
   - `/schemas`: Contains Zod schemas.
   - `/types`: Contains types and interfaces.
-  - `/App.js`: The entry point of the app.
+- `/App.js`: The entry point of the app.
 - `/assets`: Contains static assets like images and fonts.
 - `package.json`: Defines project metadata and dependencies.
 
@@ -61,6 +61,7 @@ The main dependencies used in this project are:
 - [Axios](https://axios-http.com): A popular HTTP client for making API requests.
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference.
 - [TanStack Query](https://tanstack.com/query/latest/): Powerful asynchronous state management for TS/JS, React, Solid, Vue and Svelte
+- [React Navigation](https://reactnavigation.org/): Routing and navigation for Expo and React Native apps.
 
 Please refer to the `package.json` file for a complete list of dependencies and their versions.
 

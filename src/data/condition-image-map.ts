@@ -9,9 +9,13 @@ const snow = require('../../assets/weather-icons/snow.png');
 const thunder_rain_night = require('../../assets/weather-icons/thunderstorms-night-rain.png');
 const thunder_rain_day = require('../../assets/weather-icons/thunderstorms-day-rain.png');
 const thunder_snow_night = require('../../assets/weather-icons/thunderstorms-night-snow.png');
-const thunder_snow_day= require('../../assets/weather-icons/thunderstorms-day-snow.png');
-const thunder_night = require('../../assets/weather-icons/thunderstorms-night.png')
+const thunder_snow_day = require('../../assets/weather-icons/thunderstorms-day-snow.png');
+const thunder_night = require('../../assets/weather-icons/thunderstorms-night.png');
 const thunder_day = require('../../assets/weather-icons/thunderstorms-day.png');
+const overcast_night = require('../../assets/weather-icons/overcast-night.png');
+const overcast_day = require('../../assets/weather-icons/overcast-day.png');
+const mist = require('../../assets/weather-icons/mist.png');
+const fog = require('../../assets/weather-icons/fog.png');
 
 export const CONDITION_IMAGE: {
   [key: string]: any;
@@ -27,6 +31,7 @@ export const CONDITION_IMAGE: {
     'Heavy rain': rain,
     'Light freezing rain': rain,
     'Moderate or heavy freezing rain': rain,
+    'Patchy rain possible': rain,
     'Light sleet': sleet,
     'Moderate or heavy sleet': sleet,
     'Patchy light snow': snow,
@@ -39,8 +44,12 @@ export const CONDITION_IMAGE: {
     'Moderate or heavy rain with thunder': thunder_rain_night,
     'Patchy light snow with thunder': thunder_snow_night,
     'Moderate or heavy snow with thunder': thunder_snow_night,
-    "Thundery outbreaks possible": thunder_night,
-    "Blowing snow": snow,
+    'Thundery outbreaks possible': thunder_night,
+    'Blowing snow': snow,
+    Overcast: overcast_night,
+    Mist: mist,
+    Fog: fog,
+    'Freezing fog': fog,
   },
   {
     Sunny: clear_day,
@@ -52,6 +61,7 @@ export const CONDITION_IMAGE: {
     'Heavy rain at times': rain,
     'Heavy rain': rain,
     'Light freezing rain': rain,
+    'Patchy rain possible': rain,
     'Moderate or heavy freezing rain': rain,
     'Light sleet': sleet,
     'Moderate or heavy sleet': sleet,
@@ -65,7 +75,11 @@ export const CONDITION_IMAGE: {
     'Moderate or heavy rain with thunder': thunder_rain_day,
     'Patchy light snow with thunder': thunder_snow_day,
     'Moderate or heavy snow with thunder': thunder_snow_day,
-    "Thundery outbreaks possible": thunder_day,
-    "Blowing snow": snow,
+    'Thundery outbreaks possible': thunder_day,
+    'Blowing snow': snow,
+    Overcast: overcast_day,
+    Mist: mist,
+    Fog: fog,
+    'Freezing fog': fog,
   },
 ];

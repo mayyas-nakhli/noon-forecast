@@ -18,9 +18,11 @@ import { useState } from 'react';
 import Constants from 'expo-constants';
 import HomeScreenSkeleton from '../components/HomeScreenSkeleton';
 
-export default function HomeScreen() {
+export default function HomeScreen({ route }: { route: any}) {
   const { width } = useWindowDimensions();
-  const { data, isLoading } = useQuery(GetForecastQuery());
+  const { data, isLoading } = useQuery(
+    GetForecastQuery(route?.params?.query ? `${route.params.query}` : 'dubai')
+  );
   const [dayIndex, setDayIndex] = useState(0);
   const hours24 = get24Hours(data?.forecast.forecastday, dayIndex);
   const statusBarHeight = Constants.statusBarHeight || 0;
@@ -99,5 +101,6 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     marginTop: 30,
+    marginBottom: 70,
   },
 });

@@ -15,7 +15,7 @@ const getForecast = (query: string): Promise<ForecastResponse> =>
       throw error;
     });
 
-export const GetForecastQuery = (query = 'dubai') => ({
+export const GetForecastQuery = (query:string) => ({
   queryKey: [`forecast-${query}`],
   queryFn: () => getForecast(query),
   refetchOnMount: false,

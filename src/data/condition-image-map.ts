@@ -6,6 +6,13 @@ const cloudy = require('../../assets/weather-icons/cloudy.png');
 const rain = require('../../assets/weather-icons/rain.png');
 const sleet = require('../../assets/weather-icons/sleet.png');
 const snow = require('../../assets/weather-icons/snow.png');
+const thunder_rain_night = require('../../assets/weather-icons/thunderstorms-night-rain.png');
+const thunder_rain_day = require('../../assets/weather-icons/thunderstorms-day-rain.png');
+const thunder_snow_night = require('../../assets/weather-icons/thunderstorms-night-snow.png');
+const thunder_snow_day= require('../../assets/weather-icons/thunderstorms-day-snow.png');
+const thunder_night = require('../../assets/weather-icons/thunderstorms-night.png')
+const thunder_day = require('../../assets/weather-icons/thunderstorms-day.png');
+
 export const CONDITION_IMAGE: {
   [key: string]: any;
 }[] = [
@@ -28,6 +35,12 @@ export const CONDITION_IMAGE: {
     'Moderate snow': snow,
     'Patchy heavy snow': snow,
     'Heavy snow': snow,
+    'Patchy light rain with thunder': thunder_rain_night,
+    'Moderate or heavy rain with thunder': thunder_rain_night,
+    'Patchy light snow with thunder': thunder_snow_night,
+    'Moderate or heavy snow with thunder': thunder_snow_night,
+    "Thundery outbreaks possible": thunder_night,
+    "Blowing snow": snow,
   },
   {
     Sunny: clear_day,
@@ -48,5 +61,11 @@ export const CONDITION_IMAGE: {
     'Moderate snow': snow,
     'Patchy heavy snow': snow,
     'Heavy snow': snow,
+    'Patchy light rain with thunder': thunder_rain_day,
+    'Moderate or heavy rain with thunder': thunder_rain_day,
+    'Patchy light snow with thunder': thunder_snow_day,
+    'Moderate or heavy snow with thunder': thunder_snow_day,
+    "Thundery outbreaks possible": thunder_day,
+    "Blowing snow": snow,
   },
 ];

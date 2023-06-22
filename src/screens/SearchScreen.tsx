@@ -7,9 +7,18 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import { useCallback, useState} from 'react';
+import { debounce } from 'lodash';
 import { MagnifyingGlassIcon, MapPinIcon } from 'react-native-heroicons/solid';
+import { useQuery } from '@tanstack/react-query';
+import { SearchQuery } from '../requests/SearchRequests';
 export default function SearchScreen({ navigation }: { navigation: any }) {
-  const location = [1,2,3];
+  const [query, setQuery] = useState('');
+  const { data} = useQuery(SearchQuery(query));
+  const handleSearch = (value: string) => {
+    setQuery(value);
+  };
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -20,28 +29,40 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
       <View style={styles.searchContainer}>
         <View style={styles.inputContainer}>
           <TextInput
+            onChangeText={handleTextDebounce}
             placeholder="Search City"
             style={styles.textInput}
             placeholderTextColor={'#e0e0e0'}
           ></TextInput>
           <MagnifyingGlassIcon size={24} color={'#efefef'} />
         </View>
-        {location.length > 0 ? (
+        {data !== undefined && data.length > 0 ? (
           <View style={styles.searchResults}>
-            {location.map((item, index) => {
+            {data.map((item, index) => {
               const borderStyle =
-                index === location.length - 1
+                index === data.length - 1
                   ? {}
                   : { borderBottomWidth: 1, borderBottomColor: '#e0e0e0' };
               return (
-                <TouchableOpacity key={item} style={[styles.location, borderStyle]}>
-                  <MapPinIcon size={24} color={"#efefef"}/>
-                  <Text >
-                    <Text style={{ color: '#efefef', fontSize: 18, marginEnd: 10 }}>
-                      London - 
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.jumpTo('Home', {
+                      query: `${item.lat},${item.lon}`,
+                    })
+                  }
+                  key={item.id}
+                  style={[styles.location, borderStyle]}
+                >
+                  <MapPinIcon size={24} color={'#efefef'} />
+                  <Text>
+                    <Text
+                      style={{ color: '#efefef', fontSize: 18, marginEnd: 10 }}
+                    >
+                      {`${item.name} - `}
                     </Text>
                     <Text style={{ color: '#e0e0e0', fontSize: 12 }}>
-                       {` United Kingdom`}</Text>
+                      {item.country}
+                    </Text>
                   </Text>
                 </TouchableOpacity>
               );
@@ -94,5 +115,10 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingVertical: 15,
     paddingHorizontal: 30,
+  },
+  noResults: {
+    padding: 20,
+    color: '#efefef',
+    fontSize: 18,
   },
 });

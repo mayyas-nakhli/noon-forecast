@@ -4,4 +4,5 @@ export const backendURL = WEATHER_API_URL;
 export const apiEndpoints = {
   current: '/current.json',
   forecast: '/forecast.json',
+  search: '/search.json'
 };

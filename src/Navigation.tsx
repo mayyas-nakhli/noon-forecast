@@ -31,16 +31,13 @@ export default function Navigation() {
             backgroundColor: 'rgba(0,0,0,0.2)',
           },
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+            let iconName = '';
 
             if (route.name === 'Home') {
               iconName = 'home';
-            } else if (route.name === 'Search') {
-              iconName = 'search';
             }
-
-            // You can return any component that you like here!
             return (
+              //  
               <Ionicons
                 name={iconName === 'home' ? 'home' : 'search'}
                 size={size}
@@ -58,6 +55,7 @@ export default function Navigation() {
           options={{
             tabBarLabel: '',
           }}
+          
         />
         <Tab.Screen
           name="Search"

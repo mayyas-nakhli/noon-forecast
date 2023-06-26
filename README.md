@@ -1,4 +1,7 @@
 # noon forecast
+<p align="center">
+<img src="./assets/adaptive-icon.png" alt="noon forecast logo" width="200" height="200" />
+</p>
 
 This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with noon.com.
 
@@ -6,13 +9,17 @@ This repository contains a simple weather app built using React Native. The app 
 
 The challenge was to build a weather app using a free weather API. The API used for this project is [WeatherAPI](https://www.weatherapi.com/my/). The candidate had the freedom to choose the platform (iOS or Android) based on their development workstation's operating system (Windows/Linux or macOS). The UI and scope of the project were left for the candidate to decide.
 
+## My Experience
+
+This project is my first venture into React Native, and I must say it has been an incredibly enjoyable and exciting experience. As someone with a background in web development, I encountered certain challenges while transitioning my mindset to think in terms of mobile development and prioritize the user interface for a mobile application. However, the learning process was rewarding, and I enjoyed exploring the capabilities of React Native to build a functional weather app.
+
 ## Features
 
 - Fetches weather data from the Weather API.
 - Displays current weather information such as temperature, weather condition, humidity, wind speed, etc.
 - Supports viewing weather data for different locations.
 - Provides a user-friendly interface to navigate and interact with the app.
-- Works on one platform iOS or Android.
+- Developed for the Android platform.
 
 ## Installation
 
@@ -44,14 +51,14 @@ The project structure is as follows:
 
 - `/src`: Contains the source code of the React Native app.
   - `/components`: Contains reusable UI components.
-  - `/screens`: Contains different app screens/components.
-  - `/utils`: Contains utility functions.
   - `/data`: Contains constants.
+  - `/requests`: Contains the code for making API requests and the corresponding React Query definitions.
+  - `/screens`: Contains different app screens.
+  - `/utils`: Contains utility functions.
   - `/schemas`: Contains Zod schemas.
   - `/types`: Contains types and interfaces.
-- `/App.js`: The entry point of the app.
+  - `/services`: Contains the definitions and configurations for the API Client and React Query Client, along with handlers for API responses and errors.
 - `/assets`: Contains static assets like images and fonts.
-- `package.json`: Defines project metadata and dependencies.
 
 ## Dependencies
 
@@ -62,6 +69,7 @@ The main dependencies used in this project are:
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference.
 - [TanStack Query](https://tanstack.com/query/latest/): Powerful asynchronous state management for TS/JS, React, Solid, Vue and Svelte
 - [React Navigation](https://reactnavigation.org/): Routing and navigation for Expo and React Native apps.
+- [Day.js](https://day.js.org/): Fast 2kB alternative to Moment.js with the same modern API.
 
 Please refer to the `package.json` file for a complete list of dependencies and their versions.
 

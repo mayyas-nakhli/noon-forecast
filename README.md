@@ -73,6 +73,12 @@ The main dependencies used in this project are:
 
 Please refer to the `package.json` file for a complete list of dependencies and their versions.
 
+## Assets
+
+The app utilizes [MeteIcons](https://bas.dev/work/meteocons) SVG icon pcack (Had to convert them to png to ease the dynamic selection of weather icons), which adds visual appeal and enhances the overall user experience. The icons provide intuitive representations of different weather conditions, making it easier for users to understand the current weather at a glance.
+
+The design of the app's UI/UX was inspired by [Tako Chkhikvadze's](https://dribbble.com/shots/18911229-weather-app) design, which served as a reference for creating an intuitive and visually pleasing interface. The design inspiration helped in crafting a cohesive and user-friendly experience for interacting with the weather data.
+
 ## Upcoming Features
 
 In addition to the current features, the following enhancements are planned for future updates:

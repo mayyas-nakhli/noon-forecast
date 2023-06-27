@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
   ScrollView,
+  useColorScheme,
 } from 'react-native';
 import DaysContainer from '../components/DaysContainer';
 import MainStats from '../components/MainStats';
@@ -18,7 +19,7 @@ import { useState } from 'react';
 import Constants from 'expo-constants';
 import HomeScreenSkeleton from '../components/HomeScreenSkeleton';
 
-export default function HomeScreen({ route }: { route: any}) {
+export default function HomeScreen({ route }: { route: any }) {
   const { width } = useWindowDimensions();
   const { data, isLoading } = useQuery(
     GetForecastQuery(route?.params?.query ? `${route.params.query}` : 'dubai')
@@ -26,10 +27,13 @@ export default function HomeScreen({ route }: { route: any}) {
   const [dayIndex, setDayIndex] = useState(0);
   const hours24 = get24Hours(data?.forecast.forecastday, dayIndex);
   const statusBarHeight = Constants.statusBarHeight || 0;
+
+  const theme = useColorScheme();
+  const wallpaperImage = theme === 'dark' ? require('../../assets/background.png') : require('../../assets/background-light.png')
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require('../../assets/background.png')}
+        source={wallpaperImage}
         style={styles.backgroundImage}
         blurRadius={150}
       />

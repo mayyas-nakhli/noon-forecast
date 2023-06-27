@@ -6,8 +6,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  useColorScheme,
 } from 'react-native';
 import { ChevronRightIcon } from 'react-native-heroicons/solid';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
+import { THEME } from '../data/theme';
 function getDateList(): string[] {
   const dateList: string[] = [];
   const today = dayjs();
@@ -26,15 +29,17 @@ export default function DaysContainer({
 }) {
   const [days] = useState(getDateList());
   const [selectedDay, setSelectedDay] = useState(days[0]);
+  let theme = useColorScheme();
+  theme = theme === 'dark' ? theme : 'light';
   return (
     <View style={styles.daysContainer}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>
+        <Text style={[styles.headerText, { color: THEME[theme].text_900 }]}>
           {selectedDay === days[0] ? 'Today' : selectedDay}
         </Text>
         <View style={styles.moreDaysContainer}>
-          <Text style={styles.moreDaysText}>7 days</Text>
-          <ChevronRightIcon size={16} color="#e0e0e0" />
+          <Text style={{ color: THEME[theme].text_900 }}>7 days</Text>
+          <ChevronRightIcon size={16} color={THEME[theme].text_900} />
         </View>
       </View>
       <ScrollView
@@ -53,7 +58,17 @@ export default function DaysContainer({
             <Text
               style={[
                 styles.dayPill,
-                selectedDay === day ? styles.selectedDay : {},
+                {
+                  color: THEME[theme!].text_900,
+                  borderColor: THEME[theme!].text_900,
+                },
+                selectedDay === day
+                  ? {
+                      ...styles.selectedDay,
+                      borderColor: '#2B2D42',
+                      color: '#2B2D42',
+                    }
+                  : {},
               ]}
             >
               {day}
@@ -67,47 +82,40 @@ export default function DaysContainer({
 
 const styles = StyleSheet.create({
   daysContainer: {
-    marginStart: 20,
+    marginStart: COLORS_AND_STYLES.margin_sm,
   },
   headerContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    padding: COLORS_AND_STYLES.padding_sm,
   },
   headerText: {
-    color: '#efefef',
-    fontSize: 25,
+    fontSize: COLORS_AND_STYLES.font_lg,
   },
   moreDaysContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: COLORS_AND_STYLES.gap_md,
 
     opacity: 0.6,
-  },
-  moreDaysText: {
-    color: '#e0e0e0',
   },
   scrollStyle: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 5,
+    marginTop: COLORS_AND_STYLES.margin_xs,
   },
   dayPill: {
-    marginEnd: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    color: 'white',
-    borderRadius: 20,
+    marginEnd: COLORS_AND_STYLES.margin_xs,
+    paddingVertical: COLORS_AND_STYLES.padding_sm,
+    paddingHorizontal: COLORS_AND_STYLES.padding_md,
+
+    borderRadius: COLORS_AND_STYLES.border_radius_lg,
     borderWidth: 1,
-    borderColor: 'white',
   },
   selectedDay: {
-    backgroundColor: '#FD81B1',
-    borderColor: '#2B2D42',
-    color: '#2B2D42',
+    backgroundColor: COLORS_AND_STYLES.primary_400,
   },
 });

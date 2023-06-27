@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   textInput: {
     paddingVertical: 20,
     paddingStart: 20,
-    maxWidth: '90%',
+    width: '90%',
     color: '#efefef',
   },
   searchResults: {

@@ -5,7 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "automatic",
+    "androidStatusBar": {
+      "backgroundColor": "#FD81B1"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

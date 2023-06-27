@@ -32,7 +32,7 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
             onChangeText={handleTextDebounce}
             placeholder="Search City"
             style={styles.textInput}
-            placeholderTextColor={'#e0e0e0'}
+            placeholderTextColor={'#e0e0e099'}
           ></TextInput>
           <MagnifyingGlassIcon size={24} color={'#efefef'} />
         </View>

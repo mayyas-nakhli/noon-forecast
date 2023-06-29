@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
   ScrollView,
+  useColorScheme,
 } from 'react-native';
 import DaysContainer from '../components/DaysContainer';
 import MainStats from '../components/MainStats';
@@ -17,8 +18,10 @@ import HoursStats from '../components/HoursStats';
 import { useState } from 'react';
 import Constants from 'expo-constants';
 import HomeScreenSkeleton from '../components/HomeScreenSkeleton';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
+import { THEME } from '../data/theme';
 
-export default function HomeScreen({ route }: { route: any}) {
+export default function HomeScreen({ route }: { route: any }) {
   const { width } = useWindowDimensions();
   const { data, isLoading } = useQuery(
     GetForecastQuery(route?.params?.query ? `${route.params.query}` : 'dubai')
@@ -26,10 +29,16 @@ export default function HomeScreen({ route }: { route: any}) {
   const [dayIndex, setDayIndex] = useState(0);
   const hours24 = get24Hours(data?.forecast.forecastday, dayIndex);
   const statusBarHeight = Constants.statusBarHeight || 0;
+
+  const theme = useColorScheme();
+  const wallpaperImage =
+    theme === 'dark'
+      ? require('../../assets/background.png')
+      : require('../../assets/background-light.png');
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require('../../assets/background.png')}
+        source={wallpaperImage}
         style={styles.backgroundImage}
         blurRadius={150}
       />
@@ -37,7 +46,7 @@ export default function HomeScreen({ route }: { route: any}) {
         style={[
           styles.scrollContainer,
           {
-            marginTop: statusBarHeight + 10,
+            marginTop: statusBarHeight + COLORS_AND_STYLES.margin_sm,
           },
         ]}
       >
@@ -48,13 +57,13 @@ export default function HomeScreen({ route }: { route: any}) {
             <>
               <DaysContainer setDayIndex={setDayIndex} />
               <View style={styles.location}>
-                <MapPinIcon size={24} color="#e0e0e0" />
-                <Text>
-                  <Text style={styles.textName}>{data.location.name} - </Text>
-                  <Text style={styles.textCountry}>
+                <MapPinIcon size={24} color={THEME[theme!].text_600} />
+                <View style={{flexDirection:'row',alignItems: 'center'}}>
+                  <Text style={[styles.textName, {color: THEME[theme!].text_700}]}>{data.location.name} - </Text>
+                  <Text style={[styles.textCountry, {color: THEME[theme!].text_600}]}>
                     {data.location.country}
                   </Text>
-                </Text>
+                </View>
               </View>
               <MainStats
                 forecast={data}
@@ -82,22 +91,20 @@ const styles = StyleSheet.create({
   location: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: COLORS_AND_STYLES.gap_lg,
 
     minHeight: 20,
 
     marginTop: 30,
-    marginHorizontal: 20,
+    marginHorizontal: COLORS_AND_STYLES.margin_sm,
   },
   textName: {
-    color: '#fff',
-    fontSize: 20,
+    fontSize: COLORS_AND_STYLES.font_lg,
     fontWeight: '900',
     marginEnd: 5,
   },
   textCountry: {
-    color: '#d0d0d0',
-    fontSize: 16,
+    fontSize: COLORS_AND_STYLES.font_md,
   },
   scrollContainer: {
     marginTop: 30,

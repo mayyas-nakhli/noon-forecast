@@ -1,15 +1,28 @@
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  Image,
+  useColorScheme,
+} from 'react-native';
 import { Hour } from '../schemas';
 import { ClockIcon } from 'react-native-heroicons/solid';
 import dayjs from 'dayjs';
 import { CONDITION_IMAGE } from '../data/condition-image-map';
+import { THEME } from '../data/theme';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 
 export default function HoursStats({ hours }: { hours: Hour[] }) {
+  let theme = useColorScheme();
+  theme = theme === 'dark' ? theme : 'light';
   return (
     <View style={[styles.hoursContainer]}>
       <View style={styles.hoursTitleContainer}>
-        <ClockIcon size={24} color={'#e0e0e0'} />
-        <Text style={styles.hoursTitle}>Hourly Forecast</Text>
+        <ClockIcon size={24} color={THEME[theme].text_600} />
+        <Text style={[styles.hoursTitle, { color: THEME[theme].text_700 }]}>
+          Hourly Forecast
+        </Text>
       </View>
       <ScrollView
         horizontal={true}
@@ -17,15 +30,15 @@ export default function HoursStats({ hours }: { hours: Hour[] }) {
         style={styles.hourCardsContainer}
       >
         {hours.map((item) => (
-          <View style={styles.hourCard} key={item.time}>
-            <Text style={styles.cardTime}>
+          <View style={[styles.hourCard, {backgroundColor: THEME[theme!].card_bg_transparent}]} key={item.time}>
+            <Text style={[styles.cardTime, {color: THEME[theme!].text_600}]}>
               {dayjs(item.time).format('h:mm A')}
             </Text>
             <Image
               source={CONDITION_IMAGE[item.is_day][item.condition.text]}
               style={styles.cardImage}
             />
-            <Text style={styles.cardTemp}>{item.temp_c}&#176;</Text>
+            <Text style={[styles.cardTemp,{color: THEME[theme!].text_700}]}>{item.temp_c}&#176;</Text>
           </View>
         ))}
       </ScrollView>
@@ -35,47 +48,45 @@ export default function HoursStats({ hours }: { hours: Hour[] }) {
 
 const styles = StyleSheet.create({
   hoursContainer: {
-    marginTop: 40,
-    marginStart: 20,
-    paddingBottom: 40,
+    marginTop: COLORS_AND_STYLES.margin_md,
+    marginStart: COLORS_AND_STYLES.margin_sm,
+    paddingBottom: COLORS_AND_STYLES.padding_lg,
   },
   hoursTitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: COLORS_AND_STYLES.gap_lg,
   },
   hoursTitle: {
-    fontSize: 20,
-    color: '#e0e0e0',
+    fontSize: COLORS_AND_STYLES.font_lg,
+    fontWeight: 'bold',
   },
   hourCardsContainer: {
-    marginTop: 20,
+    marginTop: COLORS_AND_STYLES.margin_sm,
     display: 'flex',
     flexDirection: 'row',
   },
   hourCard: {
     alignItems: 'center',
-    gap: 2,
+    gap: COLORS_AND_STYLES.gap_sm,
 
     width: 100,
     minHeight: 50,
 
-    marginEnd: 10,
-    padding: 10,
+    marginEnd: COLORS_AND_STYLES.margin_xs,
+    padding: COLORS_AND_STYLES.padding_sm,
 
-    backgroundColor: 'rgba(13,18,30,0.5)',
-    borderRadius: 10,
+    borderRadius: COLORS_AND_STYLES.border_radius_lg,
   },
   cardTime: {
-    color: '#d0d0d0',
-    fontSize: 12,
+    fontSize: COLORS_AND_STYLES.font_sm,
   },
   cardImage: {
     width: 80,
     height: 80,
   },
   cardTemp: {
-    color: '#e0e0e0',
-    fontSize: 18,
+    fontSize: COLORS_AND_STYLES.font_md,
+    fontWeight: 'bold'
   },
 });

@@ -8,7 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
      <Navigation /> 
     </QueryClientProvider>
   );

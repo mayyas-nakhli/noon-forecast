@@ -4,12 +4,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions, useColorScheme } from 'react-native';
+import { THEME } from './data/theme';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
-  const { width, height } = useWindowDimensions();
+  let theme = useColorScheme();
+  theme = theme === 'dark' ? theme : 'light';
+  const { width } = useWindowDimensions();
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -28,7 +31,7 @@ export default function Navigation() {
             height: 50,
             borderTopWidth: 0,
             shadowColor: 'transparent',
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: THEME[theme!].stats_card_bg_transparent,
           },
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = '';
@@ -37,7 +40,7 @@ export default function Navigation() {
               iconName = 'home';
             }
             return (
-              //  
+              //
               <Ionicons
                 name={iconName === 'home' ? 'home' : 'search'}
                 size={size}
@@ -45,8 +48,8 @@ export default function Navigation() {
               />
             );
           },
-          tabBarActiveTintColor: '#FD81B1',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: THEME[theme!].primary_400,
+          tabBarInactiveTintColor: THEME[theme!].text_600,
         })}
       >
         <Tab.Screen
@@ -55,7 +58,6 @@ export default function Navigation() {
           options={{
             tabBarLabel: '',
           }}
-          
         />
         <Tab.Screen
           name="Search"

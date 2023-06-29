@@ -6,43 +6,66 @@ import {
   View,
   Text,
   TouchableOpacity,
+  useColorScheme,
 } from 'react-native';
-import { useCallback, useState} from 'react';
+import { useCallback, useState } from 'react';
 import { debounce } from 'lodash';
 import { MagnifyingGlassIcon, MapPinIcon } from 'react-native-heroicons/solid';
 import { useQuery } from '@tanstack/react-query';
 import { SearchQuery } from '../requests/SearchRequests';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
+import { THEME } from '../data/theme';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 export default function SearchScreen({ navigation }: { navigation: any }) {
   const [query, setQuery] = useState('');
-  const { data} = useQuery(SearchQuery(query));
+  const { data } = useQuery(SearchQuery(query));
+  let theme = useColorScheme();
+  theme = theme === 'dark' ? theme : 'light';
   const handleSearch = (value: string) => {
     setQuery(value);
   };
   const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
+  const backgroundImage =
+    theme === 'dark'
+      ? require('../../assets/background.png')
+      : require('../../assets/background-light.png');
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require('../../assets/background.png')}
+        source={backgroundImage}
         style={styles.backgroundImage}
         blurRadius={150}
       />
       <View style={styles.searchContainer}>
-        <View style={styles.inputContainer}>
+        <View
+          style={[
+            styles.inputContainer,
+            { backgroundColor: THEME[theme].card_bg_transparent },
+          ]}
+        >
           <TextInput
             onChangeText={handleTextDebounce}
-            placeholder="Search City"
-            style={styles.textInput}
-            placeholderTextColor={'#e0e0e099'}
+            placeholder="Search City..."
+            style={[styles.textInput, {color: THEME[theme!].text_700}]}
+            placeholderTextColor={THEME[theme].text_400}
           ></TextInput>
-          <MagnifyingGlassIcon size={24} color={'#efefef'} />
+          <MagnifyingGlassIcon size={24} color={THEME[theme].text_700} />
         </View>
         {data !== undefined && data.length > 0 ? (
-          <View style={styles.searchResults}>
+          <View
+            style={[
+              styles.searchResults,
+              { backgroundColor: THEME[theme].card_bg_transparent },
+            ]}
+          >
             {data.map((item, index) => {
               const borderStyle =
                 index === data.length - 1
                   ? {}
-                  : { borderBottomWidth: 1, borderBottomColor: '#e0e0e0' };
+                  : {
+                      borderBottomWidth: 1,
+                      borderBottomColor: THEME[theme!].text_400,
+                    };
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -53,16 +76,17 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
                   key={item.id}
                   style={[styles.location, borderStyle]}
                 >
-                  <MapPinIcon size={24} color={'#efefef'} />
+                  <MapPinIcon size={24} color={THEME[theme!].text_600} />
                   <Text>
                     <Text
-                      style={{ color: '#efefef', fontSize: 18, marginEnd: 10 }}
+                      style={[
+                        styles.locationCity,
+                        { color: THEME[theme!].text_700 },
+                      ]}
                     >
                       {`${item.name} - `}
                     </Text>
-                    <Text style={{ color: '#e0e0e0', fontSize: 12 }}>
-                      {item.country}
-                    </Text>
+                    <Text style={[styles.locationCountry]}>{item.country}</Text>
                   </Text>
                 </TouchableOpacity>
               );
@@ -84,7 +108,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     position: 'relative',
-    paddingHorizontal: 20,
+    paddingHorizontal: COLORS_AND_STYLES.padding_md,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -92,33 +116,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     minHeight: 40,
 
-    marginTop: 50,
-    paddingEnd: 20,
+    marginTop: COLORS_AND_STYLES.margin_lg,
+    paddingEnd: COLORS_AND_STYLES.padding_md,
 
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    borderRadius: 25,
+    borderRadius: COLORS_AND_STYLES.border_radius_lg,
   },
   textInput: {
-    paddingVertical: 20,
-    paddingStart: 20,
+    paddingVertical: COLORS_AND_STYLES.padding_md,
+    paddingStart: COLORS_AND_STYLES.padding_md,
+    fontSize: COLORS_AND_STYLES.font_md,
     width: '90%',
-    color: '#efefef',
   },
   searchResults: {
-    marginTop: 10,
+    marginTop: COLORS_AND_STYLES.margin_xs,
 
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    borderRadius: 20,
+    borderRadius: COLORS_AND_STYLES.border_radius_lg,
   },
   location: {
     flexDirection: 'row',
-    gap: 10,
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+    gap: COLORS_AND_STYLES.gap_lg,
+    padding: COLORS_AND_STYLES.padding_md,
   },
-  noResults: {
-    padding: 20,
-    color: '#efefef',
-    fontSize: 18,
+  locationCity: {
+    fontSize: COLORS_AND_STYLES.font_md,
+    marginEnd: COLORS_AND_STYLES.margin_xs,
+  },
+  locationCountry: {
+    fontSize: COLORS_AND_STYLES.font_sm,
+    color: COLORS_AND_STYLES.text_500,
   },
 });

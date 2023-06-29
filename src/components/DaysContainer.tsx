@@ -8,7 +8,11 @@ import {
   TouchableOpacity,
   useColorScheme,
 } from 'react-native';
-import { ChevronRightIcon } from 'react-native-heroicons/solid';
+import {
+  CalendarDaysIcon,
+  ChevronRightIcon,
+  CalculatorIcon,
+} from 'react-native-heroicons/solid';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
 function getDateList(): string[] {
@@ -34,9 +38,12 @@ export default function DaysContainer({
   return (
     <View style={styles.daysContainer}>
       <View style={styles.headerContainer}>
-        <Text style={[styles.headerText, { color: THEME[theme].text_900 }]}>
-          {selectedDay === days[0] ? 'Today' : selectedDay}
-        </Text>
+        <View style={styles.headerTextContainer}>
+          <CalendarDaysIcon size={24} color={THEME[theme].text_600} />
+          <Text style={[styles.headerText, { color: THEME[theme].text_700 }]}>
+            {selectedDay === days[0] ? 'Today' : selectedDay}
+          </Text>
+        </View>
         <View style={styles.moreDaysContainer}>
           <Text style={{ color: THEME[theme].text_950 }}>7 days</Text>
           <ChevronRightIcon size={16} color={THEME[theme].text_900} />
@@ -64,7 +71,8 @@ export default function DaysContainer({
                 },
                 selectedDay === day
                   ? {
-                    backgroundColor: THEME[theme!].primary_400,
+                      fontWeight: 'bold',
+                      backgroundColor: THEME[theme!].primary_400,
                       borderColor: THEME[theme!].primary_500,
                       color: THEME[theme!].text_100,
                     }
@@ -90,9 +98,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: COLORS_AND_STYLES.padding_sm,
+    paddingStart: 0,
+  },
+  headerTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: COLORS_AND_STYLES.gap_lg,
   },
   headerText: {
     fontSize: COLORS_AND_STYLES.font_lg,
+    fontWeight: 'bold',
   },
   moreDaysContainer: {
     display: 'flex',
@@ -115,5 +130,4 @@ const styles = StyleSheet.create({
     borderRadius: COLORS_AND_STYLES.border_radius_lg,
     borderWidth: 1,
   },
-  
 });

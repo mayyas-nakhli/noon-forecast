@@ -6,7 +6,6 @@ import { SearchResponse, searchResponseSchema } from '../schemas/SearchSchema';
 import handleApiError from '../services/handle-api-error';
 
 const getSearchResult = (query: string): Promise<SearchResponse> => {
-  console.log(query);
   return apiClient
     .get(`${apiEndpoints.search}?q=${query}`)
     .then((res: AxiosResponse) => handleApiResponse(searchResponseSchema, res))

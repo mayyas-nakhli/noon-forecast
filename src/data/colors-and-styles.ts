@@ -4,7 +4,7 @@ export const COLORS_AND_STYLES = {
   border_radius_md: 10,
   border_radius_sm: 5,
   card_bg_transparent_dark: 'rgba(13,18,30,0.5)',
-  card_bg_transparent_light: 'rgba(235, 240, 252,0.9)',
+  card_bg_transparent_light: 'rgba(146, 178, 242, 0.25)',
   dark_primary_100: '#fecde0',
   dark_primary_200: '#feb3d0',
   dark_primary_300: '#fd9ac1',

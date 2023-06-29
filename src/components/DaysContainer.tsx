@@ -38,7 +38,7 @@ export default function DaysContainer({
           {selectedDay === days[0] ? 'Today' : selectedDay}
         </Text>
         <View style={styles.moreDaysContainer}>
-          <Text style={{ color: THEME[theme].text_900 }}>7 days</Text>
+          <Text style={{ color: THEME[theme].text_950 }}>7 days</Text>
           <ChevronRightIcon size={16} color={THEME[theme].text_900} />
         </View>
       </View>
@@ -64,9 +64,9 @@ export default function DaysContainer({
                 },
                 selectedDay === day
                   ? {
-                      ...styles.selectedDay,
-                      borderColor: '#2B2D42',
-                      color: '#2B2D42',
+                    backgroundColor: THEME[theme!].primary_400,
+                      borderColor: THEME[theme!].primary_500,
+                      color: THEME[theme!].text_100,
                     }
                   : {},
               ]}
@@ -115,7 +115,5 @@ const styles = StyleSheet.create({
     borderRadius: COLORS_AND_STYLES.border_radius_lg,
     borderWidth: 1,
   },
-  selectedDay: {
-    backgroundColor: COLORS_AND_STYLES.primary_400,
-  },
+  
 });

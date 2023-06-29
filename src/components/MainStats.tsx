@@ -1,7 +1,9 @@
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { Current, ForecastResponse } from '../schemas';
+import { Text, View, StyleSheet, Image, useColorScheme } from 'react-native';
+import { ForecastResponse } from '../schemas';
 import { CONDITION_IMAGE } from '../data/condition-image-map';
-
+import { THEME } from '../data/theme';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
+import { uvIndexColor } from '../utils/uv';
 export default function MainStats({
   forecast,
   sunrise,
@@ -11,9 +13,12 @@ export default function MainStats({
   sunrise: string;
   dayIndex: number;
 }) {
+  let theme = useColorScheme();
+  theme = theme === 'dark' ? theme : 'light';
+
   const secondaryStats = [
     {
-      imgSrc: require('../../assets/stats-icons/wind.png'),
+      imgSrc: theme === 'dark' ? require('../../assets/stats-icons/wind-dark.png') : require('../../assets/stats-icons/wind-light.png'),
       label: 'Wind',
       value: `${
         dayIndex === 0
@@ -22,7 +27,7 @@ export default function MainStats({
       } KM/H`,
     },
     {
-      imgSrc: require('../../assets/stats-icons/humidity.png'),
+      imgSrc: theme === 'dark' ? require('../../assets/stats-icons/humidity-dark.png') : require('../../assets/stats-icons/humidity-light.png'),
       label: 'Humidity',
       value: `${
         dayIndex === 0
@@ -31,18 +36,23 @@ export default function MainStats({
       }%`,
     },
     {
-      imgSrc: require('../../assets/stats-icons/sunrise.png'),
-      label: 'Sunrise',
-      value: `${
+      imgSrc: theme === 'dark' ? require('../../assets/stats-icons/uv-dark.png') : require('../../assets/stats-icons/uv-light.png'),
+      label: 'UV Index',
+      value: 
         dayIndex === 0
-          ? sunrise
-          : forecast.forecast.forecastday[dayIndex].astro.sunrise
-      }`,
+          ?  forecast.current.uv 
+          : forecast.forecast.forecastday[dayIndex].day.uv
+      ,
     },
   ];
 
   return (
-    <View style={styles.mainStatsContainer}>
+    <View
+      style={[
+        styles.mainStatsContainer,
+        { backgroundColor: THEME[theme].card_bg_transparent },
+      ]}
+    >
       <View style={styles.mainContent}>
         <Image
           source={
@@ -57,13 +67,15 @@ export default function MainStats({
           style={styles.weatherImage}
         />
         <View style={styles.weatherContainer}>
-          <Text style={styles.mainText}>
+          <Text style={[styles.mainText, {color: THEME[theme].text_600}]}>
             {dayIndex === 0
               ? Math.round(forecast.current.temp_c)
-              : Math.round(forecast.forecast.forecastday[dayIndex].day.avgtemp_c)}
+              : Math.round(
+                  forecast.forecast.forecastday[dayIndex].day.avgtemp_c
+                )}
             &#176;
           </Text>
-          <Text style={styles.subtitle}>
+          <Text style={[styles.subtitle, {color: THEME[theme].text_600}]}>
             {dayIndex === 0
               ? forecast.current.condition.text
               : forecast.forecast.forecastday[dayIndex].day.condition.text}
@@ -72,10 +84,10 @@ export default function MainStats({
       </View>
       <View style={styles.secondaryStats}>
         {secondaryStats.map((stat) => (
-          <View style={styles.statCard} key={stat.label}>
+          <View style={[styles.statCard, {backgroundColor: THEME[theme!].stats_card_bg_transparent}]} key={stat.label}>
             <Image source={stat.imgSrc} style={styles.statImage} />
-            <Text style={styles.statLabel}>{stat.label}</Text>
-            <Text style={styles.statValue}>{stat.value}</Text>
+            <Text style={[{color: THEME[theme!].text_600}]}>{stat.label}</Text>
+            <Text style={[styles.statValue, {color: THEME[theme!].text_800}, stat.label === 'UV Index' ? {color: uvIndexColor(+stat.value)}: {}]}>{stat.value}</Text>
           </View>
         ))}
       </View>
@@ -86,26 +98,24 @@ const styles = StyleSheet.create({
   mainStatsContainer: {
     minHeight: 300,
 
-    marginTop: 10,
-    marginHorizontal: 20,
+    marginTop: COLORS_AND_STYLES.margin_xs,
+    marginHorizontal: COLORS_AND_STYLES.margin_sm,
 
-    backgroundColor: 'rgba(13,18,30,0.5)',
-    borderRadius: 10,
+    borderRadius: COLORS_AND_STYLES.border_radius_md,
   },
   mainContent: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: COLORS_AND_STYLES.gap_lg,
 
-    marginHorizontal: 10,
+    marginHorizontal: COLORS_AND_STYLES.margin_xs,
   },
   weatherContainer: {
     flex: 1,
   },
   mainText: {
-    color: '#efefef',
-    fontSize: 50,
+    fontSize: COLORS_AND_STYLES.font_xlg,
   },
   weatherImage: {
     width: 200,
@@ -116,32 +126,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   statCard: {
-    gap: 2,
+    gap: COLORS_AND_STYLES.gap_sm,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.1)',
 
     width: '30%',
     minHeight: 100,
 
-    marginBottom: 20,
-    padding: 10,
+    marginBottom: COLORS_AND_STYLES.margin_sm,
+    padding: COLORS_AND_STYLES.padding_sm,
 
-    borderRadius: 10,
+    borderRadius: COLORS_AND_STYLES.border_radius_lg,
   },
   statImage: {
     width: 20,
     height: 20,
   },
-  statLabel: {
-    color: '#e0e0e0',
-  },
   statValue: {
-    color: 'white',
-    fontSize: 14,
+    fontSize: COLORS_AND_STYLES.font_md,
   },
   subtitle: {
-    color: '#e0e0e0',
-    fontSize: 20,
+    fontSize: COLORS_AND_STYLES.font_lg,
   },
 });

@@ -6,12 +6,12 @@ import SearchScreen from './screens/SearchScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useWindowDimensions, useColorScheme } from 'react-native';
 import { THEME } from './data/theme';
+import { useThemeStore } from './store/ThemeStore';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
   const { width } = useWindowDimensions();
   return (
     <NavigationContainer>

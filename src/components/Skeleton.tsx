@@ -1,6 +1,8 @@
 import { StyleSheet, View, ViewStyle, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRef, useEffect } from 'react';
+import { useThemeStore } from '../store/ThemeStore';
+import { THEME } from '../data/theme';
 
 export default function Skeleton({
   width,
@@ -12,6 +14,8 @@ export default function Skeleton({
   style: ViewStyle;
 }) {
   const translateX = useRef(new Animated.Value(-width)).current;
+
+  const theme = useThemeStore((state) => state.theme);
   useEffect(() => {
     Animated.loop(
       Animated.timing(translateX, {
@@ -24,7 +28,12 @@ export default function Skeleton({
   return (
     <View
       style={[
-        { width, height, backgroundColor: 'rgba(13,18,30,0.5)',overflow: 'hidden' },
+        {
+          width,
+          height,
+          backgroundColor: THEME[theme].card_bg_transparent,
+          overflow: 'hidden',
+        },
         style,
       ]}
     >
@@ -41,7 +50,7 @@ export default function Skeleton({
       >
         <LinearGradient
           style={{ width: '100%', height: '100%' }}
-          colors={['transparent', 'rgba(13,18,30,0.25)', 'transparent']}
+          colors={['transparent', THEME[theme].stats_card_bg_transparent, 'transparent']}
           start={{ x: 1, y: 1 }}
         ></LinearGradient>
       </Animated.View>

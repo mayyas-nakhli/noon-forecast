@@ -15,6 +15,7 @@ import {
 } from 'react-native-heroicons/solid';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
+import { useThemeStore } from '../store/ThemeStore';
 function getDateList(): string[] {
   const dateList: string[] = [];
   const today = dayjs();
@@ -33,8 +34,7 @@ export default function DaysContainer({
 }) {
   const [days] = useState(getDateList());
   const [selectedDay, setSelectedDay] = useState(days[0]);
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
   return (
     <View style={styles.daysContainer}>
       <View style={styles.headerContainer}>

@@ -12,10 +12,10 @@ import dayjs from 'dayjs';
 import { CONDITION_IMAGE } from '../data/condition-image-map';
 import { THEME } from '../data/theme';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
+import { useThemeStore } from '../store/ThemeStore';
 
 export default function HoursStats({ hours }: { hours: Hour[] }) {
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
   return (
     <View style={[styles.hoursContainer]}>
       <View style={styles.hoursTitleContainer}>

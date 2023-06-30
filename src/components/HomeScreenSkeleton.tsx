@@ -1,5 +1,6 @@
 import { ScrollView } from 'react-native';
 import Skeleton from './Skeleton';
+import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 
 export default function HomeScreenSkeleton({ width }: { width: number }) {
   return (
@@ -7,7 +8,7 @@ export default function HomeScreenSkeleton({ width }: { width: number }) {
       <Skeleton
         width={width - 50}
         height={80}
-        style={{ borderRadius: 10, marginTop: 10, marginHorizontal: 25 }}
+        style={{ borderRadius: 10, marginTop: COLORS_AND_STYLES.margin_sm, marginHorizontal: 25 }}
       ></Skeleton>
       <Skeleton
         width={width - 100}

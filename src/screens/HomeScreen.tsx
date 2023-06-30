@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   useWindowDimensions,
   ScrollView,
-  useColorScheme,
 } from 'react-native';
 import DaysContainer from '../components/DaysContainer';
 import MainStats from '../components/MainStats';
@@ -20,6 +19,7 @@ import Constants from 'expo-constants';
 import HomeScreenSkeleton from '../components/HomeScreenSkeleton';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
+import { useThemeStore } from '../store/ThemeStore';
 
 export default function HomeScreen({ route }: { route: any }) {
   const { width } = useWindowDimensions();
@@ -29,8 +29,7 @@ export default function HomeScreen({ route }: { route: any }) {
   const [dayIndex, setDayIndex] = useState(0);
   const hours24 = get24Hours(data?.forecast.forecastday, dayIndex);
   const statusBarHeight = Constants.statusBarHeight || 0;
-
-  const theme = useColorScheme();
+  const theme = useThemeStore((state) => state.theme);
   const wallpaperImage =
     theme === 'dark'
       ? require('../../assets/background.png')
@@ -58,9 +57,24 @@ export default function HomeScreen({ route }: { route: any }) {
               <DaysContainer setDayIndex={setDayIndex} />
               <View style={styles.location}>
                 <MapPinIcon size={24} color={THEME[theme!].text_600} />
-                <View style={{flexDirection:'row',alignItems: 'center'}}>
-                  <Text style={[styles.textName, {color: THEME[theme!].text_700}]}>{data.location.name} - </Text>
-                  <Text style={[styles.textCountry, {color: THEME[theme!].text_600}]}>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <Text
+                    style={[styles.textName, { color: THEME[theme!].text_700 }]}
+                  >
+                    {data.location.name}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.textCountry,
+                      { color: THEME[theme!].text_600 },
+                    ]}
+                  >
                     {data.location.country}
                   </Text>
                 </View>
@@ -101,13 +115,11 @@ const styles = StyleSheet.create({
   textName: {
     fontSize: COLORS_AND_STYLES.font_lg,
     fontWeight: '900',
-    marginEnd: 5,
   },
   textCountry: {
     fontSize: COLORS_AND_STYLES.font_md,
   },
   scrollContainer: {
     marginTop: 30,
-    marginBottom: 70,
   },
 });

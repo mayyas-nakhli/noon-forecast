@@ -1,6 +1,6 @@
 # noon forecast
 <p align="center">
-<img src="./assets/adaptive-icon.png" alt="noon forecast logo" width="200" height="200" />
+<img src="./assets/icon.png" alt="noon forecast logo" width="200" height="200" />
 </p>
 
 This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with noon.com.
@@ -19,6 +19,7 @@ This project is my first venture into React Native, and I must say it has been a
 - Displays current weather information such as temperature, weather condition, humidity, wind speed, etc.
 - Supports viewing weather data for different locations.
 - Provides a user-friendly interface to navigate and interact with the app.
+- Light and Dark themes.
 - Developed for the Android platform.
 
 ## Installation
@@ -68,6 +69,7 @@ The main dependencies used in this project are:
 - [Axios](https://axios-http.com): A popular HTTP client for making API requests.
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference.
 - [TanStack Query](https://tanstack.com/query/latest/): Powerful asynchronous state management for TS/JS, React, Solid, Vue and Svelte
+- [Zustand](https://zustand-demo.pmnd.rs/): A small, fast and scalable bearbones state-management solution using simplified flux principles.
 - [React Navigation](https://reactnavigation.org/): Routing and navigation for Expo and React Native apps.
 - [Day.js](https://day.js.org/): Fast 2kB alternative to Moment.js with the same modern API.
 
@@ -84,9 +86,8 @@ The design of the app's UI/UX was inspired by [Tako Chkhikvadze's](https://dribb
 In addition to the current features, the following enhancements are planned for future updates:
 
 1. Make the app more stable by implementing error handling and optimizing performance.
-2. Add different themes to the app, allowing users to choose between light and dark themes. Additionally, an automatic theme option can be included, which changes the theme based on the time of day.
-3. Implement a feature to save favorite locations, allowing users to easily access weather information for their preferred places.
-4. Implement a feature to ask the user for location permission and utilize the location data to provide weather information specific to the user's current location.
+2. Implement a feature to save favorite locations, allowing users to easily access weather information for their preferred places.
+3. Implement a feature to ask the user for location permission and utilize the location data to provide weather information specific to the user's current location.
 
 These upcoming features aim to improve the user experience and provide more customization options within the app.
 

@@ -7,12 +7,12 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "androidStatusBar": {
-      "backgroundColor": "#FD81B1"
+      "backgroundColor": "#feee00"
     },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1C1D2B"
+      "backgroundColor": "#feee00"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,7 +23,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2B2D42"
+        "backgroundColor": "#feee00"
       }
     },
     "web": {

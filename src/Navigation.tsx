@@ -6,12 +6,13 @@ import SearchScreen from './screens/SearchScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useWindowDimensions, useColorScheme } from 'react-native';
 import { THEME } from './data/theme';
+import { useThemeStore } from './store/ThemeStore';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
   const { width } = useWindowDimensions();
   return (
     <NavigationContainer>
@@ -34,15 +35,12 @@ export default function Navigation() {
             backgroundColor: THEME[theme!].stats_card_bg_transparent,
           },
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName = '';
+            const iconName = route.name.toLowerCase();
 
-            if (route.name === 'Home') {
-              iconName = 'home';
-            }
             return (
               //
               <Ionicons
-                name={iconName === 'home' ? 'home' : 'search'}
+                name={iconName as 'home' | 'search' | 'settings'}
                 size={size}
                 color={color}
               />
@@ -65,6 +63,11 @@ export default function Navigation() {
           options={{
             tabBarLabel: '',
           }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ tabBarLabel: '' }}
         />
       </Tab.Navigator>
     </NavigationContainer>

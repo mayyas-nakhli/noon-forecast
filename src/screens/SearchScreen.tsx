@@ -6,7 +6,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  useColorScheme,
 } from 'react-native';
 import { useCallback, useState } from 'react';
 import { debounce } from 'lodash';
@@ -15,12 +14,11 @@ import { useQuery } from '@tanstack/react-query';
 import { SearchQuery } from '../requests/SearchRequests';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useThemeStore } from '../store/ThemeStore';
 export default function SearchScreen({ navigation }: { navigation: any }) {
   const [query, setQuery] = useState('');
   const { data } = useQuery(SearchQuery(query));
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
   const handleSearch = (value: string) => {
     setQuery(value);
   };
@@ -46,7 +44,7 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
           <TextInput
             onChangeText={handleTextDebounce}
             placeholder="Search City..."
-            style={[styles.textInput, {color: THEME[theme!].text_700}]}
+            style={[styles.textInput, { color: THEME[theme!].text_700 }]}
             placeholderTextColor={THEME[theme].text_400}
           ></TextInput>
           <MagnifyingGlassIcon size={24} color={THEME[theme].text_700} />

@@ -4,6 +4,7 @@ import { CONDITION_IMAGE } from '../data/condition-image-map';
 import { THEME } from '../data/theme';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { uvIndexColor } from '../utils/uv';
+import { useThemeStore } from '../store/ThemeStore';
 export default function MainStats({
   forecast,
   sunrise,
@@ -13,8 +14,7 @@ export default function MainStats({
   sunrise: string;
   dayIndex: number;
 }) {
-  let theme = useColorScheme();
-  theme = theme === 'dark' ? theme : 'light';
+  const theme = useThemeStore((state) => state.theme);
 
   const secondaryStats = [
     {

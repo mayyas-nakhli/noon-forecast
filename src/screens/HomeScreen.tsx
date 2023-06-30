@@ -20,11 +20,17 @@ import HomeScreenSkeleton from '../components/HomeScreenSkeleton';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
 import { useThemeStore } from '../store/ThemeStore';
+import { useLocationStore } from '../store/LocationStore';
 
 export default function HomeScreen({ route }: { route: any }) {
   const { width } = useWindowDimensions();
+  const locationState = useLocationStore();
   const { data, isLoading } = useQuery(
-    GetForecastQuery(route?.params?.query ? `${route.params.query}` : 'dubai')
+    GetForecastQuery(
+      route?.params?.query
+        ? `${route.params.query}`
+        : `${locationState.latitude},${locationState.longitude}`
+    )
   );
   const [dayIndex, setDayIndex] = useState(0);
   const hours24 = get24Hours(data?.forecast.forecastday, dayIndex);

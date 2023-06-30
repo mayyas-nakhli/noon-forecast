@@ -1,6 +1,7 @@
 import { SafeAreaView, Text, Image, StyleSheet } from 'react-native';
 import { useThemeStore } from '../store/ThemeStore';
 import ThemeSettings from '../components/ThemeSettings';
+import LocationSettings from '../components/LocationSettings';
 export default function SettingsScreen() {
   const themeState = useThemeStore();
   const backgroundImage =
@@ -8,15 +9,15 @@ export default function SettingsScreen() {
       ? require('../../assets/background.png')
       : require('../../assets/background-light.png');
   return (
-    <SafeAreaView
-      style={{ flex: 1}}
-    >
+    <SafeAreaView style={{ flex: 1 }}>
       <Image
         source={backgroundImage}
         style={styles.backgroundImage}
         blurRadius={150}
       />
+      {/* Settings input must be buttons I think. */}
       <ThemeSettings />
+      <LocationSettings />
     </SafeAreaView>
   );
 }
@@ -24,7 +25,7 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   backgroundImage: {
     position: 'absolute',
-    minWidth: '30%',
+    width: '100%',
     height: '100%',
   },
 });

@@ -21,6 +21,7 @@ export default function Navigation() {
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarStyle: {
+            // [TODO]: Should do something about the placement with keyboard open .
             position: 'absolute',
             bottom: 10,
             left: width / 4,

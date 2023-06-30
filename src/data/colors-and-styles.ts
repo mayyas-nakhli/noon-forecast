@@ -44,6 +44,7 @@ export const COLORS_AND_STYLES = {
   padding_lg: 40,
   padding_md: 20,
   padding_sm: 10,
+  padding_xs: 5,
   red_400: '#f87171',
   stats_card_bg_transparent_dark: 'rgba(0, 0, 0,0.1)',
   stats_card_bg_transparent_light: 'rgba(255, 255, 255,0.4)',

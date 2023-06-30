@@ -1,6 +1,6 @@
 # noon forecast
 <p align="center">
-<img src="./assets/adaptive-icon.png" alt="noon forecast logo" width="200" height="200" />
+<img src="./assets/icon.png" alt="noon forecast logo" width="200" height="200" />
 </p>
 
 This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with noon.com.

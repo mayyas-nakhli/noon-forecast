@@ -69,6 +69,7 @@ The main dependencies used in this project are:
 - [Axios](https://axios-http.com): A popular HTTP client for making API requests.
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference.
 - [TanStack Query](https://tanstack.com/query/latest/): Powerful asynchronous state management for TS/JS, React, Solid, Vue and Svelte
+- [Zustand](https://zustand-demo.pmnd.rs/): A small, fast and scalable bearbones state-management solution using simplified flux principles.
 - [React Navigation](https://reactnavigation.org/): Routing and navigation for Expo and React Native apps.
 - [Day.js](https://day.js.org/): Fast 2kB alternative to Moment.js with the same modern API.
 

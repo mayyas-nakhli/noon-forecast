@@ -4,7 +4,16 @@
 <img src="./assets/icon.png" alt="noon forecast logo" width="200" height="200" />
 </p>
 
+
 This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with noon.com.
+
+## Screenshots
+
+<p align="center">
+   <img src="./dark-theme.jpg" alt="Screenshot for Dark Theme"  width="230" height="500" />
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img src="./light-theme.jpg" alt="Screenshot for Dark Theme"  width="230" height="500" />
+</p>
 
 ## Challenge Description
 
@@ -60,6 +69,7 @@ The project structure is as follows:
   - `/schemas`: Contains Zod schemas.
   - `/types`: Contains types and interfaces.
   - `/services`: Contains the definitions and configurations for the API Client and React Query Client, along with handlers for API responses and errors.
+  - `/store`: Contains global stores for managing application state.
 - `/assets`: Contains static assets like images and fonts.
 
 ## Dependencies

@@ -5,7 +5,7 @@
 </p>
 
 
-This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with noon.com.
+This repository contains a simple weather app built using React Native. The app retrieves weather data from a free weather API and displays it to the user. It was developed as a challenge for an interview with [noon](https://noon.com).
 
 ## Screenshots
 
@@ -30,6 +30,7 @@ This project is my first venture into React Native, and I must say it has been a
 - Supports viewing weather data for different locations.
 - Provides a user-friendly interface to navigate and interact with the app.
 - Light and Dark themes.
+- Basic error handling.
 - Developed for the Android platform.
 
 ## Installation
@@ -96,14 +97,29 @@ The design of the app's UI/UX was inspired by [Tako Chkhikvadze's](https://dribb
 
 In addition to the current features, the following enhancements are planned for future updates:
 
-1. Make the app more stable by implementing error handling and optimizing performance.
-2. Add recent searched locations in search screen.
-3. Implement a feature to save favorite locations, allowing users to easily access weather information for their preferred places.
-4. Update location status and data when the user grant permission while the app is opened.
-5. Implement different splash screen for each theme (light and dark).
-6. Animate logo in splash screen.
+1. Add recent searched locations in search screen.
+2. Implement a feature to save favorite locations, allowing users to easily access weather information for their preferred places.
+3. Update location status and data when the user grant permission while the app is opened.
+4. Implement different splash screen for each theme (light and dark).
+5. Animate logo in splash screen.
 
 These upcoming features aim to improve the user experience and provide more customization options within the app.
+
+## Roadblocks and Areas of Growth
+
+### Lack of Clear Documentation for Best Practices
+
+As a new React Native developer, I struggled to find comprehensive documentation that clearly outlined best practices for development. This made it challenging to establish solid coding conventions and adhere to industry standards. I had to rely on trial and error to determine the most appropriate approaches for structuring code, managing state, handling navigation, and implementing UI components.
+
+### Implementing Effective Global Error Handling for Async Operations
+
+Error handling, particularly with asynchronous operations, proved to be a significant challenge. While I was familiar with handling synchronous errors using try-catch blocks, finding a global approach to handle async errors in a consistent and efficient manner was more difficult. I encountered difficulties in coordinating error handling across different asynchronous flows and ensuring proper error propagation and display.
+
+Despite implementing basic error handling mechanisms, I found it fell below the acceptable level. I realized the importance of comprehensive error handling, including informative error messages, proper logging, and graceful error recovery or fallback strategies. This challenge highlighted the need for a deeper understanding of error handling patterns, asynchronous programming, and finding suitable techniques or libraries to facilitate global error handling in React Native.
+
+Moving forward, I plan to invest more time in studying and practicing advanced error handling techniques, exploring available libraries or frameworks, and seeking guidance from experienced developers to enhance my skills in effectively managing async errors in React Native applications.
+
+
 
 ## License
 
@@ -111,4 +127,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use and 
 
 ## Acknowledgments
 
-- The team at noon.com for providing this coding challenge opportunity.
+- The team at [noon](https://noon.com) for providing this coding challenge opportunity.

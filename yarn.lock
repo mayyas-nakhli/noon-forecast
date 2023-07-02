@@ -1186,7 +1186,7 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.20.0", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.20.0", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.5.tgz#8564dd588182ce0047d55d7a75e93921107b57ec"
   integrity sha512-ecjvYlnAaZ/KVneE/OdKYBYfgXV3Ptu6zQWmgEF7vwKhQnvVS6bjMD2XYgj+SNvQ1GfK/pjgokfPkC/2CO8CuA==
@@ -6981,6 +6981,13 @@ react-devtools-core@^4.26.1:
     shell-quote "^1.6.1"
     ws "^7"
 
+react-error-boundary@^4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-4.0.10.tgz#975cc298e93ab7760d1460b7ea5a7855621e355a"
+  integrity sha512-pvVKdi77j2OoPHo+p3rorgE43OjDWiqFkaqkJz8sJKK6uf/u8xtzuaVfj5qJ2JnDLIgF1De3zY5AJDijp+LVPA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 react-freeze@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-freeze/-/react-freeze-1.0.3.tgz#5e3ca90e682fed1d73a7cb50c2c7402b3e85618d"
@@ -7022,6 +7029,11 @@ react-native-error-boundary@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.2.3.tgz#0c9261c2f7ab97222e0a0101852189f140c5f6e7"
   integrity sha512-Cg5sEToVpayv+s6mCPidRO48DswjOaaxbt1sOiVC+8nJ/tVUPXFkT1iCkZbG0E1eVr+LM9NXsAfOGiwvZZBCJA==
+
+react-native-exception-handler@^2.10.10:
+  version "2.10.10"
+  resolved "https://registry.yarnpkg.com/react-native-exception-handler/-/react-native-exception-handler-2.10.10.tgz#b6bfe2b7e6ea4a4deb1f518f48ce2ee1d4843497"
+  integrity sha512-otAXGoZDl1689OoUJWN/rXxVbdoZ3xcmyF1uq/CsizdLwwyZqVGd6d+p/vbYvnF996FfEyAEBnHrdFxulTn51w==
 
 react-native-gradle-plugin@^0.71.18:
   version "0.71.19"

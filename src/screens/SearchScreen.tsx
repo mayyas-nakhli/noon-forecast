@@ -17,7 +17,7 @@ import { THEME } from '../data/theme';
 import { useThemeStore } from '../store/ThemeStore';
 export default function SearchScreen({ navigation }: { navigation: any }) {
   const [query, setQuery] = useState('');
-  const { data } = useQuery(SearchQuery(query));
+  const { data, isError } = useQuery(SearchQuery(query));
   const theme = useThemeStore((state) => state.theme);
   const handleSearch = (value: string) => {
     setQuery(value);
@@ -27,6 +27,12 @@ export default function SearchScreen({ navigation }: { navigation: any }) {
     theme === 'dark'
       ? require('../../assets/background.png')
       : require('../../assets/background-light.png');
+
+  if (isError) {
+    // TODO: should find a better way to handle API errors
+    navigation.navigate('Error');
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Image

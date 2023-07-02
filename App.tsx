@@ -12,10 +12,12 @@ import {
 import { useLocationStore } from './src/store/LocationStore';
 import { DEFAULT_LOCATION } from './src/data/location';
 import { locationPermissionAlert } from './src/data/alerts';
+
 export default function App() {
   let systemTheme = useColorScheme();
   const themeState = useThemeStore();
   const locationStore = useLocationStore();
+
   useEffect(() => {
     if (themeState.system)
       themeState.setThemeState({

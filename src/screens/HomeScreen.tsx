@@ -21,11 +21,13 @@ import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
 import { useThemeStore } from '../store/ThemeStore';
 import { useLocationStore } from '../store/LocationStore';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen({ route }: { route: any }) {
+  const navigation = useNavigation();
   const { width } = useWindowDimensions();
   const locationState = useLocationStore();
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     GetForecastQuery(
       route?.params?.query
         ? `${route.params.query}`
@@ -40,6 +42,12 @@ export default function HomeScreen({ route }: { route: any }) {
     theme === 'dark'
       ? require('../../assets/background.png')
       : require('../../assets/background-light.png');
+
+  if (isError) {
+    // TODO: should find a better way to handle API errors
+    //@ts-ignore
+    navigation.navigate('Error');
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Image

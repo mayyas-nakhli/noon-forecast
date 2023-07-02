@@ -6,13 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  useColorScheme,
 } from 'react-native';
-import {
-  CalendarDaysIcon,
-  ChevronRightIcon,
-  CalculatorIcon,
-} from 'react-native-heroicons/solid';
+import { CalendarDaysIcon } from 'react-native-heroicons/solid';
 import { COLORS_AND_STYLES } from '../data/colors-and-styles';
 import { THEME } from '../data/theme';
 import { useThemeStore } from '../store/ThemeStore';
@@ -43,10 +38,6 @@ export default function DaysContainer({
           <Text style={[styles.headerText, { color: THEME[theme].text_700 }]}>
             {selectedDay === days[0] ? 'Today' : selectedDay}
           </Text>
-        </View>
-        <View style={styles.moreDaysContainer}>
-          <Text style={{ color: THEME[theme].text_950 }}>7 days</Text>
-          <ChevronRightIcon size={16} color={THEME[theme].text_900} />
         </View>
       </View>
       <ScrollView

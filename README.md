@@ -21,7 +21,7 @@ The challenge was to build a weather app using a free weather API. The API used 
 
 ## My Experience
 
-This project is my first venture into React Native, and I must say it has been an incredibly enjoyable and exciting experience. As someone with a background in web development, I encountered certain challenges while transitioning my mindset to think in terms of mobile development and prioritize the user interface for a mobile application. However, the learning process was rewarding, and I enjoyed exploring the capabilities of React Native to build a functional weather app.
+This project is my first venture into React Native, and I must say it has been an incredibly enjoyable and exciting experience. As someone with a background in web development, I encountered certain challenges while transitioning my mindset to think in terms of mobile development and prioritize the user interface for a mobile application. However, the learning process was rewarding, and I enjoyed exploring the capabilities of React Native.
 
 ## Features
 

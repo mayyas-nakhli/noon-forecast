@@ -15,6 +15,8 @@ This repository contains a simple weather app built using React Native. The app 
    <img src="./light-theme.jpg" alt="Screenshot for Dark Theme"  width="230" height="500" />
 </p>
 
+[demo](https://youtu.be/a6uherlKh7c)
+
 ## Challenge Description
 
 The challenge was to build a weather app using a free weather API. The API used for this project is [WeatherAPI](https://www.weatherapi.com/my/). The candidate had the freedom to choose the platform (iOS or Android) based on their development workstation's operating system (Windows/Linux or macOS). The UI and scope of the project were left for the candidate to decide.
